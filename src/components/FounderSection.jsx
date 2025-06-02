@@ -18,6 +18,7 @@ import { Leaf } from "lucide-react";
 import { MapPin } from "lucide-react";
 import { Users } from "lucide-react";
 import { Star } from "lucide-react";
+import Shahin from '../assets/images/Shahin.jpeg'
 
 // Animation variants
 const containerVariants = {
@@ -452,7 +453,7 @@ const FounderSection = () => {
               position="relative"
               zIndex={1}
               boxShadow="0 12px 40px rgba(122, 132, 113, 0.2)"
-              backgroundImage="url('/src/assets/images/Shahin.jpeg')"
+              backgroundImage={`url(${Shahin})`}
               backgroundSize="cover"
               backgroundPosition="center"
               variants={{
@@ -475,7 +476,7 @@ const FounderSection = () => {
               width="max-content"
               bottom="-10px"
               left="50%"
-              transform="translateX(-50%)"
+             
               bg="linear-gradient(135deg, #7A8471, #657A5C)"
               color="white"
               px={4}

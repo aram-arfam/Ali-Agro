@@ -18,6 +18,10 @@ import {
   Mail,
 } from "lucide-react";
 import { Separator } from "@chakra-ui/react";
+import facebook from "../assets/images/facebook.png";
+import twitter from "../assets/images/twitter.png";
+import instagram from "../assets/images/instagram.png";
+import linkedin from "../assets/images/linkedin.png";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -39,10 +43,10 @@ const Footer = () => {
   ];
 
   const socialLinks = [
-    { label: "Facebook", icon: "src/assets/images/facebook.png", href: "#" },
-    { label: "Twitter", icon: "src/assets/images/twitter.png", href: "#" },
-    { label: "Instagram", icon: "src/assets/images/instagram.png", href: "#" },
-    { label: "LinkedIn", icon: "src/assets/images/linkedin.png", href: "#" },
+    { label: "Facebook", icon: facebook, href: "#" },
+    { label: "Twitter", icon: twitter, href: "#" },
+    { label: "Instagram", icon: instagram, href: "#" },
+    { label: "LinkedIn", icon: linkedin, href: "#" },
   ];
 
   const contactDetails = [

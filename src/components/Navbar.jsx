@@ -12,15 +12,13 @@ import {
   CloseButton,
   Container,
 } from "@chakra-ui/react";
-import { Menu as MenuIcon, ChevronDownIcon } from "lucide-react"; // Menu icon for mobile
-// For a simple router, you might use window.location.pathname
-// For React Router, you'd use `NavLink` and `useLocation`
-// For Next.js, you'd use `Link` from `next/link` and `useRouter`
+import { Menu as MenuIcon, ChevronDownIcon } from "lucide-react"; 
+import logo from "../assets/images/Ali_Agro.png";
+
+
 
 const NavLinkItem = ({ href, children, isActive, ...rest }) => {
-  // isActive prop would be determined by your routing solution
-  // Example for basic path matching:
-  // const isActive = typeof window !== "undefined" && window.location.pathname === href;
+ 
 
   return (
     <Link
@@ -81,7 +79,7 @@ const Navbar = () => {
           {/* Logo */}
           <Link href="/" _hover={{ textDecoration: "none" }}>
             <Image
-              src="/src/assets/images/Ali_Agro.png" // Replace with your logo path
+              src={logo}
               alt="Ali Agro Logo"
               height="85px" 
               htmlHeight="40px" // Adjust size as needed
