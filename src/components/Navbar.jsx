@@ -76,19 +76,52 @@ const Navbar = () => {
     >
       <Container maxW="7xl">
         <Flex h={16} alignItems="center" justifyContent="space-between">
-          {/* Logo */}
-          <Link href="/" _hover={{ textDecoration: "none" }}>
+          {/* Desktop Logo - Left aligned */}
+          <Link 
+            href="/" 
+            _hover={{ textDecoration: "none" }}
+            display={{ base: "none", md: "block" }}
+          >
             <Image
               src={logo}
               alt="Ali Agro Logo"
-              height="85px" 
+              height="70px" 
               htmlHeight="40px" // Adjust size as needed
               objectFit="contain"
             />
-            {/* Or Text Logo:
-            <Heading as="h1" size="md" color="brand.fernGreen">Ali Agro</Heading>
-            */}
           </Link>
+
+          {/* Mobile Layout */}
+          <Flex 
+            display={{ base: "flex", md: "none" }} 
+            alignItems="center"
+            justifyContent="center"
+            position="relative"
+            width="100%"
+          >
+            {/* Mobile Logo - Centered */}
+            <Link href="/" _hover={{ textDecoration: "none" }}>
+              <Image
+                src={logo}
+                alt="Ali Agro Logo"
+                height="85px" 
+                htmlHeight="40px"
+                objectFit="contain"
+              />
+            </Link>
+            
+            {/* Mobile Menu Button - Positioned absolutely to the right */}
+            <IconButton
+              size="md"
+              icon={<MenuIcon size={24} />}
+              aria-label="Open Menu"
+              onClick={onOpen}
+              variant="ghost"
+              color="brand.fernGreen"
+              position="absolute"
+              right="0"
+            />
+          </Flex>
 
           {/* Desktop Navigation */}
           <HStack spacing={6} display={{ base: "none", md: "flex" }}>
@@ -111,18 +144,6 @@ const Navbar = () => {
               Shop Now
             </Button> */}
           </HStack>
-
-          {/* Mobile Menu Button */}
-          <Flex display={{ base: "flex", md: "none" }} alignItems="center">
-            <IconButton
-              size="md"
-              icon={<MenuIcon size={24} />}
-              aria-label="Open Menu"
-              onClick={onOpen}
-              variant="ghost" // Use ghost variant from your theme
-              color="brand.fernGreen"
-            />
-          </Flex>
         </Flex>
 
         {/* Mobile Navigation Drawer */}
@@ -147,7 +168,7 @@ const Navbar = () => {
             >
               <Link href="/" onClick={onClose}>
                 <Image
-                  src="/path-to-your-logo.png" // Replace with your logo path
+                  src={logo} // Updated to use the imported logo
                   alt="Ali Agro Logo"
                   htmlHeight="36px"
                   objectFit="contain"
