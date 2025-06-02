@@ -1,4 +1,5 @@
-import { motion } from "framer-motion";
+import React from "react";
+import { motion } from "motion/react";
 import {
   Box,
   Button,
@@ -19,57 +20,89 @@ const containerVariants = {
   visible: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.2,
+      staggerChildren: 0.3,
+      delayChildren: 0.2,
     },
   },
 };
 
 const textVariants = {
-  hidden: { opacity: 0, y: 20 },
+  hidden: { opacity: 0, y: 30 },
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.6, ease: "easeOut" },
+    transition: { 
+      duration: 0.8, 
+      ease: "easeOut" 
+    },
   },
 };
 
 const imageVariants = {
-  hidden: { opacity: 0, scale: 0.95 },
+  hidden: { opacity: 0, scale: 0.9, x: 50 },
   visible: {
     opacity: 1,
     scale: 1,
-    transition: { duration: 0.8, ease: "easeOut" },
+    x: 0,
+    transition: { 
+      duration: 1, 
+      ease: "easeOut",
+      delay: 0.2
+    },
   },
 };
 
 const buttonVariants = {
-  hover: {
-    y: -3,
-    transition: {
-      y: { duration: 0.2, ease: "easeOut" },
-      backgroundColor: { duration: 0.3 },
+  hidden: { opacity: 0, y: 20 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { 
+      duration: 0.6, 
+      ease: "easeOut" 
     },
   },
-  tap: { scale: 0.98 },
+  hover: {
+    y: -4,
+    scale: 1.02,
+    transition: {
+      duration: 0.2,
+      ease: "easeOut",
+    },
+  },
+  tap: { 
+    scale: 0.98,
+    transition: { duration: 0.1 }
+  },
 };
 
 const floatingVariants = {
   float: {
-    y: [0, -15, 0],
+    y: [0, -20, 0],
+    rotate: [0, 5, 0],
     transition: {
-      duration: 4,
+      duration: 6,
       repeat: Infinity,
       ease: "easeInOut",
     },
   },
 };
 
+// Create motion components
+const MotionBox = motion(Box);
+const MotionStack = motion(Stack);
+const MotionVStack = motion(VStack);
+const MotionHeading = motion(Heading);
+const MotionText = motion(Text);
+const MotionHStack = motion(HStack);
+const MotionFlex = motion(Flex);
+const MotionImage = motion(Image);
+
 const Hero = () => {
   return (
-    <Box bg="bg.canvas" w="100%" overflow="hidden">
+    <Box bg="bg.canvas" w="100%" overflow="hidden" minH="100vh" display="flex" alignItems="center">
       <Container maxW="container.xl" py={{ base: "16", md: "24" }}>
-        <Stack
-          as={motion.div}
+        <MotionStack
           initial="hidden"
           animate="visible"
           variants={containerVariants}
@@ -78,135 +111,172 @@ const Hero = () => {
           align="center"
         >
           {/* Text Content */}
-          <VStack
-            as={motion.div}
+          <MotionVStack
             variants={containerVariants}
-            initial="hidden"
-            animate="visible"
             alignItems={{ base: "center", lg: "flex-start" }}
-            spacing="6"
+            spacing="8"
             textAlign={{ base: "center", lg: "left" }}
             flex="1"
           >
-            <Heading
-              as={motion.h1}
+            <MotionHeading
               variants={textVariants}
-              fontSize={{ base: "3xl", md: "4xl", lg: "5xl" }}
+              fontSize={{ base: "3xl", md: "4xl", lg: "5xl", xl: "6xl" }}
               color="brand.fernGreen"
-              lineHeight="1.2"
+              lineHeight="1.1"
+              fontWeight="bold"
             >
               Ali Agro: Cultivating Wellness, Naturally.
-            </Heading>
+            </MotionHeading>
 
-            <Text
-              as={motion.p}
+            <MotionText
               variants={textVariants}
               fontSize={{ base: "lg", md: "xl" }}
               color="fg.muted"
+              maxW="600px"
+              lineHeight="1.6"
             >
               Experience the pure power of Moringa Leaf Powder, sustainably
               grown at our farm in Alamdanga, Bangladesh. We blend traditional
               wisdom with modern biotech for natural, organic products that
               boost your immunity, energy, and overall well-being.
               Farm-to-packet, for a healthier you and a healthier planet.
-            </Text>
+            </MotionText>
 
-            <Text
-              as={motion.p}
+            <MotionText
               variants={textVariants}
               fontSize="md"
               color="fg.subtle"
               fontStyle="italic"
+              maxW="500px"
             >
               Founded by Mo Shaheen Akhter, committed to safe food and
               self-reliance.
-            </Text>
+            </MotionText>
 
-            <HStack
-              spacing="4"
-              pt="4"
-              as={motion.div}
+            <MotionHStack
               variants={containerVariants}
+              spacing="6"
+              pt="4"
+              flexWrap="wrap"
+              justify={{ base: "center", lg: "flex-start" }}
             >
-              <Button
-                as={motion.button}
-                variants={textVariants}
+              <motion.div
+                variants={buttonVariants}
                 whileHover="hover"
                 whileTap="tap"
-                variant={buttonVariants}
-                size="lg"
-                onClick={() => console.log("Learn More Clicked")}
               >
-                Discover Moringa
-              </Button>
+                <Button
+                  size="lg"
+                  colorScheme="green"
+                  px="8"
+                  py="6"
+                  fontSize="lg"
+                  onClick={() => console.log("Learn More Clicked")}
+                >
+                  Discover Moringa
+                </Button>
+              </motion.div>
 
-              <Button
-                as={motion.button}
-                variants={textVariants}
+              <motion.div
+                variants={buttonVariants}
                 whileHover="hover"
                 whileTap="tap"
-                variant="outline"
-                size="lg"
-                onClick={() => console.log("Explore Services Clicked")}
               >
-                Our Services
-              </Button>
-            </HStack>
-          </VStack>
+                <Button
+                  variant="outline"
+                  size="lg"
+                  px="8"
+                  py="6"
+                  fontSize="lg"
+                  colorScheme="green"
+                  onClick={() => console.log("Explore Services Clicked")}
+                >
+                  Our Services
+                </Button>
+              </motion.div>
+            </MotionHStack>
+          </MotionVStack>
 
           {/* Image Content */}
-          <Flex
-            as={motion.div}
+          <MotionFlex
             variants={imageVariants}
             flex="1"
             justifyContent="center"
             alignItems="center"
             position="relative"
-            w={{ base: "80%", md: "70%", lg: "full" }}
-            maxW={{ base: "400px", md: "500px", lg: "full" }}
+            w={{ base: "90%", md: "80%", lg: "full" }}
+            maxW={{ base: "450px", md: "550px", lg: "full" }}
             mx="auto"
           >
-            <Box
-              as={motion.div}
-              initial="hidden"
-              animate="visible"
-              borderRadius="xl"
+            <MotionBox
+              borderRadius="2xl"
               overflow="hidden"
-              boxShadow="xl"
-              border="2px solid"
+              boxShadow="2xl"
+              border="3px solid"
               borderColor="brand.mintLeaf"
+              position="relative"
+              whileHover={{ 
+                scale: 1.02,
+                boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.25)"
+              }}
+              transition={{ duration: 0.3 }}
             >
-              <Image
+              <MotionImage
                 src={HeroImage}
                 alt="Lush Moringa leaves or Ali Agro farm"
                 objectFit="cover"
-                htmlWidth="1000"
-                htmlHeight="667"
-                fallbackSrc="https://via.placeholder.com/500x350/C7D2C7/657A5C?text=Ali+Agro+Moringa"
-                as={motion.img}
-                whileHover={{ scale: 1.03 }}
-                transition={{ duration: 0.3 }}
+                w="full"
+                h="auto"
+                htmlWidth="600"
+                htmlHeight="400"
+                fallbackSrc="https://via.placeholder.com/600x400/C7D2C7/657A5C?text=Ali+Agro+Moringa"
+                whileHover={{ scale: 1.05 }}
+                transition={{ duration: 0.4 }}
               />
-            </Box>
+            </MotionBox>
 
-            {/* Animated decorative element */}
-            <Box
-              as={motion.div}
+            {/* Animated decorative elements */}
+            <MotionBox
               variants={floatingVariants}
               animate="float"
               display={{ base: "none", lg: "block" }}
               position="absolute"
-              bottom="-20px"
-              right="-20px"
-              width="150px"
-              height="150px"
+              bottom="-30px"
+              right="-30px"
+              width="120px"
+              height="120px"
               bg="brand.dustySage"
+              borderRadius="full"
+              opacity="0.4"
+              zIndex="-1"
+            />
+            
+            <MotionBox
+              variants={{
+                float: {
+                  y: [0, 15, 0],
+                  x: [0, -10, 0],
+                  transition: {
+                    duration: 8,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                  },
+                }
+              }}
+              animate="float"
+              display={{ base: "none", md: "block" }}
+              position="absolute"
+              top="-20px"
+              left="-20px"
+              width="80px"
+              height="80px"
+              bg="brand.mintLeaf"
               borderRadius="full"
               opacity="0.3"
               zIndex="-1"
             />
-          </Flex>
-        </Stack>
+          </MotionFlex>
+        </MotionStack>
       </Container>
     </Box>
   );

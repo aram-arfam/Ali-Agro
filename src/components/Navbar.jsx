@@ -81,8 +81,9 @@ const Navbar = () => {
           {/* Logo */}
           <Link href="/" _hover={{ textDecoration: "none" }}>
             <Image
-              src="/path-to-your-logo.png" // Replace with your logo path
+              src="/src/assets/images/Ali_Agro.png" // Replace with your logo path
               alt="Ali Agro Logo"
+              height="85px" 
               htmlHeight="40px" // Adjust size as needed
               objectFit="contain"
             />
